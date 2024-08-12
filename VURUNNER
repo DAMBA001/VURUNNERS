@@ -1,35 +1,40 @@
-public class balexCompany{
-    public static void calculatePay(double basePay, int hoursWorked) {
-        // Minimum wage check
-        if (basePay < 8.00) {
-            System.out.println("Error: Base pay cannot be less than $8.00 an hour.");
-            return;
-        }
+public class Marathon {
+public static void main(String[] args) {
+// Names of the runners
+String[] names = {
+"Elena", "Thomas", "Hamilton", "Suzie", "Phil",
+"Matt", "Alex", "Emma", "John", "James",
+"Jane", "Emily", "Daniel", "Neda", "Aaron", "Kate"
+};
 
-        // Maximum hours check
-        if (hoursWorked > 60) {
-            System.out.println("Error: Hours worked cannot be more than 60 hours a week.");
-            return;
-        }
+// Corresponding times in minutes
+int[] times = {
+341, 273, 278, 329, 445,
+402, 388, 275, 243, 334,
+412, 393, 299, 343, 317, 265
+};
 
-        double totalPay;
-        if (hoursWorked <= 40) {
-            // Regular pay calculation
-            totalPay = hoursWorked * basePay;
-        } else {
-            // Overtime calculation
-            int overtimeHours = hoursWorked - 40;
-            totalPay = (40 * basePay) + (overtimeHours * basePay * 1.5);
-        }
+// Variables to store the index of the fastest and second fastest runners
+int fastestIndex = 0;
+int secondFastestIndex = 0;
 
-        System.out.printf("Total pay for %d hours worked at $%.2f per hour is $%.2f%n", hoursWorked, basePay, totalPay);
-    }
-
-    public static void main(String[] args) {
-        // Example employees
-        calculatePay(7.50, 35); // Should show an error due to low base pay
-        calculatePay(8.20, 47); // Should calculate pay with overtime
-        calculatePay(10.00, 73); // Should show an error due to too many hours
-        calculatePay(9.00, 38); // Should calculate regular pay
-    }
+// Find the fastest runner
+for (int i = 1; i < times.length; i++) {
+if (times[i] < times[fastestIndex]) {
+fastestIndex = i;
 }
+}
+
+// Find the second fastest runner
+for (int i = 1; i < times.length; i++) {
+if (i != fastestIndex && times[i] < times[secondFastestIndex]) {
+secondFastestIndex = i;
+}
+}
+
+// Output the results
+System.out.println("Fastest runner: " + names[fastestIndex] + " with a time of " + times[fastestIndex] + " minutes.");
+System.out.println("Second fastest runner: " + names[secondFastestIndex] + " with a time of " + times[secondFastestIndex] + " minutes.");
+}
+}
+
